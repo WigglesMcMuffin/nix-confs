@@ -1,0 +1,10 @@
+alias ..='cd ..'
+
+# colour greps
+alias grep='() { $(whence -p grep) --color=auto $@ }'
+
+# Show what rm is rm-ing
+alias rm='rm -v'
+alias rspec='rspec --color'
+
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }

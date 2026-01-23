@@ -1,0 +1,7 @@
+powerlevel9k_random_color(){
+	local code
+	#for code ({000..255}) echo -n "$%F{$code}"
+	#code=$[${RANDOM}%11+10]    # random between 10-20
+	code=$[${RANDOM}%211+20]    # random between 20-230
+	printf "%03d" $code
+}

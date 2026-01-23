@@ -20,38 +20,37 @@
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-          };
         };
         modules = [
           ./hosts/mini
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              extraSpecialArgs = {
+                inherit inputs;
+                wezterm-name = "mini-home";
+              };
+              users.tmoss.imports = [ ./home/tmoss ];
+            };
+          }
         ];
       };
-      tmoss-desktop-nixos = nixpkgs.lib.nixosSystem rec {
+      kea = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
-          pkgs-stable = import nixpkgs-stable {
-            inherit system;
-          };
         };
         modules = [
           ./hosts/desktop
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              extraSpecialArgs = {
+                inherit inputs;
+                wezterm-name = "desktop-home";
+              };
+              users.tmoss.imports = [ ./home/tmoss ./home/tmoss/hyprland.nix ./home/tmoss/home.nix ];
+            };
+          }
         ];
-      };
-    };
-
-    homeConfigurations = {
-      "tmoss@tmoss-mini-nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [./home/tmoss/home.nix];
-        extraSpecialArgs = { inherit inputs; };
-      };
-      "tmoss@tmoss-desktop-nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [./home/tmoss/home.nix];
-        extraSpecialArgs = { inherit inputs; };
       };
     };
   };
