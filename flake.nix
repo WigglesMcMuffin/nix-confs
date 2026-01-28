@@ -17,6 +17,9 @@
   outputs = { self, nixpkgs, nixpkgs-stable, sops-nix, home-manager, ... }@inputs: {
     homeManagerModules = {
       nvim = import ./home/config/nvim;
+      users = {
+        tmoss = import ./home/tmoss;
+      };
     };
     nixosConfigurations = {
       tmoss-mini-nixos = nixpkgs.lib.nixosSystem rec {
