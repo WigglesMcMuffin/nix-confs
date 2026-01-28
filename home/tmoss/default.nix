@@ -6,6 +6,7 @@ in {
     ./main.nix
     ./zsh.nix
     ./wezterm.nix
+    ../config/nvim
   ];
 
   home = let

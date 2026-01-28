@@ -37,7 +37,6 @@ in {
     ];
 
     unstable = with pkgs; [
-      neovim
       qutebrowser
       fzf
       rofi
