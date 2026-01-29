@@ -47,13 +47,14 @@ in {
       go-task
       eza
     ];
+
+    dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."dotfiles".path;
   in {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.05";
 
     packages = stable ++ unstable;
-
 
     file = {
       #Neovim

@@ -17,6 +17,9 @@
       tree-sitter
       gcc
 
+      # For telescope
+      fzf
+
       # Lua LSP
       lua5_1
       lua-language-server
@@ -36,7 +39,20 @@
 
     extraLuaConfig = ''require("tmoss")'';
   };
+  home = let
+    dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."dotfiles".path;
+  in {
 
-  home.file.".config/nvim/lazy-lock.json".source = ./lazy.lock;
-  home.file.".config/nvim/lua".source = ./lua;
+    mutableFile = {
+      "dotfiles" = {
+        url = https://github.com/wigglesmcmuffin/dotfiles.git;
+        type = "git";
+      };
+    };
+
+    file = {
+      ".config/nvim/lazy-lock.json".source = "${dotfiles}/nvim/lazy.lock";
+      ".config/nvim/lua".source = "${dotfiles}/nvim/lua";
+    };
+  };
 }

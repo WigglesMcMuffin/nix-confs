@@ -37,7 +37,7 @@ in {
   };
 
   networking = {
-    hostName = "tmoss-mini-nixos";
+    hostName = "tui";
     networkmanager.enable = true;
   };
 

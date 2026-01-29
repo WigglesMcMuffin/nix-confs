@@ -17,25 +17,26 @@
   outputs = { self, nixpkgs, nixpkgs-stable, sops-nix, home-manager, ... }@inputs: {
     homeManagerModules = {
       nvim = import ./home/config/nvim;
+      fetch-mutable-files = import ./home/modules/fetch-mutable-files.nix;
       users = {
         tmoss = import ./home/tmoss;
       };
     };
     nixosConfigurations = {
-      tmoss-mini-nixos = nixpkgs.lib.nixosSystem rec {
+      tui = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
         };
         modules = [
-          ./hosts/mini
+          ./hosts/tui
           home-manager.nixosModules.home-manager {
             home-manager = {
               extraSpecialArgs = {
                 inherit inputs;
-                wezterm-name = "mini-home";
+                wezterm-name = "tui-home";
               };
-              users.tmoss.imports = [ ./home/tmoss ];
+              users.tmoss.imports = [ ./home/modules/fetch-mutable-files.nix ./home/tmoss ];
             };
           }
         ];
@@ -46,14 +47,14 @@
           inherit inputs;
         };
         modules = [
-          ./hosts/desktop
+          ./hosts/kea
           home-manager.nixosModules.home-manager {
             home-manager = {
               extraSpecialArgs = {
                 inherit inputs;
-                wezterm-name = "desktop-home";
+                wezterm-name = "kea-home";
               };
-              users.tmoss.imports = [ ./home/tmoss ./home/tmoss/hyprland.nix ./home/tmoss/home.nix ];
+              users.tmoss.imports = [ ./home/modules/fetch-mutable-files.nix ./home/tmoss ./home/tmoss/hyprland.nix ./home/tmoss/home.nix ];
             };
           }
         ];
