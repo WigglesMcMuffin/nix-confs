@@ -22,10 +22,6 @@
         tmoss = import ./home/tmoss;
       };
     }; 
-    packageVersions = {
-      nixpkgs = nixpkgs.lib.version;
-      nixpkgs-stable = nixpkgs-stable.lib.version;
-    };
     nixosConfigurations = {
       tui = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";

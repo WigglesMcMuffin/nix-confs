@@ -8,26 +8,38 @@ in {
 
   nixpkgs.overlays = [
     (final: prev: {
-      clipse = let
-        version = "1.2.0";
+      clipse = prev.clipse.override rec {
+        buildGoModule = args: pkgs.buildGoModule ( args // {
+          version = "1.2.0";
+          src = final.fetchFromGitHub {
+            owner = "savedra1";
+            repo = "clipse";
+            rev = "v1.2.0";
+            hash = "sha256-17ZzmgXm8aJGG4D48wJv+rBCvJZMH3b2trHwhTqwb8s=";
+          };
+          vendorHash = "sha256-6lOUSRo1y4u8+8G/L6BvhU052oYrsthqxrsgUtbGhYM=";
+          tags = [ "wayland" ];
+          env = {
+            GCO_ENABLED = "0";
+          };
+        });
+      };
+    })
+    (final: prev: {
+      wezterm = prev.wezterm.overrideAttrs (old: rec {
+        version = "0-unstable-2026-01-29-overlaypatch";
         src = pkgs.fetchFromGitHub {
-          owner = "savedra1";
-          repo = "clipse";
-          rev = "v${version}";
-          hash = "sha256-17ZzmgXm8aJGG4D48wJv+rBCvJZMH3b2trHwhTqwb8s=";
+          owner = "JafarAbdi";
+          repo = "wezterm";
+          rev = "c1c57af8556fd78a51f9556bdbbb56c3c38e0b57";
+          fetchSubmodules = true;
+          hash = "sha256-cH7kdJ1h+5qTsd4GG7JFg+o8gNm42VVEAdbR3zE1ieE=";
         };
-      in
-        prev.clipse.override rec {
-          buildGoModule = args: pkgs.buildGoModule ( args // {
-            inherit src version;
-            vendorHash = "sha256-6lOUSRo1y4u8+8G/L6BvhU052oYrsthqxrsgUtbGhYM=";
-
-            tags = [ "wayland" ];
-
-            env = {
-              GCO_ENABLED = "0";
-            };
-          }); };
+        cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+          inherit src;
+          hash = "sha256-o6VEpAzNUPtONbtI63DXyGWiLDVU9q8IZethlzz5duk=";
+        };
+      });
     })
   ];
 
