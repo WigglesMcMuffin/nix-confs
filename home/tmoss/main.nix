@@ -57,10 +57,8 @@ in {
     packages = stable ++ unstable;
 
     file = {
-      #Neovim
-
       # Extra Utils
-      "bin/sessionizer".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/nix-confs/home/tmoss/sessionizer";
+      "bin/sessionizer".source = ./sessionizer;
     };
 
     sessionVariables = {
