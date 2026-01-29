@@ -24,8 +24,6 @@ in {
           };
         });
       };
-    })
-    (final: prev: {
       wezterm = prev.wezterm.overrideAttrs (old: rec {
         version = "0-unstable-2026-01-29-overlaypatch";
         src = pkgs.fetchFromGitHub {
