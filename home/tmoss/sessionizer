@@ -3,9 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    remote_selections=$(awk '/Host [^*]+$/ {print $2}' ~/.ssh/config | while read host; do ssh $host -o ConnectTimeout=1 -o RemoteCommand=none "find ~/projects ~/builds ~/programming ~/ -mindepth 1 -maxdepth 1 -type d" </dev/null 2>/dev/null | awk -v ssh_host=$host 'BEGIN {OFS=":"} {print ssh_host, $0}'; done)
-    local_selection=$(find ~/projects ~/builds ~/programming ~/ -mindepth 1 -maxdepth 1 -type d | awk '{print "local:"$0}')
-    selected=$(printf "${remote_selections}\n${local_selection}" | fzf)
+    selected=$(awk '/Host [^*]+$/ {print $2}' ~/.ssh/config.d/home | while read host; do ssh $host -o ConnectTimeout=1 -o RemoteCommand=none "find ~/projects ~/builds ~/programming ~/ -mindepth 1 -maxdepth 1 -type d" </dev/null 2>/dev/null | awk -v ssh_host=$host 'BEGIN {OFS=":"} {print ssh_host, $0}'; done | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -15,10 +13,6 @@ fi
 source=$(echo "$selected" | cut -d':' -f1)
 selected=$(echo "$selected" | cut -d':' -f2)
 selected_name=$(basename "$selected" | tr . _)
-
-echo "${source}"
-echo "${selected}"
-echo "${selected_name}"
 
 PANE_ID=""
 if [[ "${source}" == "local" ]]; then
