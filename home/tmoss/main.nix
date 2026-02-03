@@ -67,6 +67,7 @@ in {
     packages = stable ++ unstable;
 
     file = {
+      # TODO: Add ~/.ssh/config to include ~/.ssh/confid.d/
       # Extra Utils
       "bin/sessionizer".source = ./sessionizer;
     };
