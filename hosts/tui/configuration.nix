@@ -52,6 +52,19 @@ in {
 
   #zramSwap.enable = true;
 
+  sops = {
+    age.sshKeyPaths = [ "/home/tmoss/.ssh/id_ed-v2" ];
+    defaultSopsFile = ./secrets/nebula.yaml;
+    secrets = {
+      "tmoss.k8s.mini.crt" = {
+        path = "/etc/nebula/host.crt";
+      };
+      "tmoss.k8s.mini.key" = {
+        path = "/etc/nebula/host.key";
+      };
+    };
+  };
+
   services = {
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
@@ -181,9 +194,6 @@ in {
   environment.variables.EDITOR = "nvim";
 
   environment.etc = {
-    "nebula/ca.crt".source = ./nebula.ca.crt;
-    "nebula/host.crt".source = ./tmoss.k8s.mini.crt;
-    "nebula/host.key".source = ./tmoss.k8s.mini.key;
     "kubernetes/resolv.conf".source = ./k8s.resolv.conf;
   };
 
