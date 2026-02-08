@@ -28,7 +28,6 @@ let
     sops
     libcgroup
     openiscsi
-    #nomad_1_8
   ];
 in {
   _module.args.pkgs-stable = import inputs.nixpkgs-stable {
@@ -38,15 +37,20 @@ in {
 
   networking = {
     hostName = "tui";
-    networkmanager.enable = true;
+    networkmanager.enable = false;
+    interfaces.enp2s0 = {
+      ipv4.addresses = [{
+        address = "10.0.0.232";
+        prefixLength = 24;
+      }];
+    };
+    defaultGateway = {
+      address = "10.0.0.1";
+      interface = "enp2s0";
+    };
   };
 
   #zramSwap.enable = true;
-
-  security.rtkit.enable = true;
-  security.pki.certificateFiles = [
-    ./ca.crt
-  ];
 
   services = {
     # Enable the X11 windowing system.
@@ -168,8 +172,6 @@ in {
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
-      "obsidian"
-      "nomad"
     ];
 
   # List packages installed in system profile. To search, run:

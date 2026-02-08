@@ -8,10 +8,17 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
+
+
 
   fileSystems = {
     "/" = {
@@ -21,7 +28,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/00AD-EAB8";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      #options = [ "fmask=0077" "dmask=0077" ];
     };
     "/storage" = {
       device = "/dev/disk/by-uuid/a69071e3-8df5-44ee-bb78-4b9eb31b0cd3";
@@ -35,7 +42,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault false;
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;

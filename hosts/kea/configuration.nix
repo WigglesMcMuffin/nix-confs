@@ -16,11 +16,6 @@
 
   zramSwap.enable = true;
 
-  security.rtkit.enable = true;
-  security.pki.certificateFiles = [
-    ./ca.crt
-  ];
-
   services = {
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = false;
@@ -91,6 +86,8 @@
         bitwarden-desktop
         obsidian
         gcc
+        sops
+        age
         gimp
         nerd-fonts.lilex
         nerd-fonts.meslo-lg
