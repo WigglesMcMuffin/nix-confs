@@ -30,6 +30,7 @@
         };
         modules = [
           ./hosts/tui
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager {
             home-manager = {
               extraSpecialArgs = {
@@ -48,6 +49,7 @@
         };
         modules = [
           ./hosts/kea
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager {
             home-manager = {
               extraSpecialArgs = {

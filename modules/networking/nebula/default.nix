@@ -50,7 +50,12 @@
     };
   };
 
-  environment.systemPackages = [
-    pkgs.nebula
-  ];
+  environment = {
+    etc = {
+      "nebula/ca.crt".source = ./nebula.ca.crt;
+    };
+    systemPackages = [
+      pkgs.nebula
+    ];
+  };
 }

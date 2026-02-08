@@ -16,6 +16,19 @@
 
   zramSwap.enable = true;
 
+  sops = {
+    age.sshKeyPaths = [ "/home/tmoss/.ssh/id_ed-v2" ];
+    defaultSopsFile = ./secrets/nebula.yaml;
+    secrets = {
+      "tmoss.personal.desktop.crt" = {
+        path = "/etc/nebula/host.crt";
+      };
+      "tmoss.personal.desktop.key" = {
+        path = "/etc/nebula/host.key";
+      };
+    };
+  };
+
   services = {
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = false;
@@ -101,11 +114,6 @@
     in {
       systemPackages = stable ++ unstable;
       variables.EDITOR = "nvim";
-      etc = {
-        "nebula/ca.crt".source = ./nebula.ca.crt;
-        "nebula/host.crt".source = ./tmoss.personal.desktop.crt;
-        "nebula/host.key".source = ./tmoss.personal.desktop.key;
-      };
     };
 
 
