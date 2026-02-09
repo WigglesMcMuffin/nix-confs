@@ -10,10 +10,10 @@ in {
   imports = [
     { _module.args = { inherit currentDir; }; }
     ./hardware-configuration.nix
-    ../../modules/common/global
+    ./disk-layout.nix
     ./configuration.nix
+    ../../modules/common/global
     ../../modules/common/optional/kubernetes-operator.nix
     ../../modules/networking/nebula
-    #../common/optional/kubernetes-master.nix
   ];
 }

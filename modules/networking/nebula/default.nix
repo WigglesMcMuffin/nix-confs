@@ -1,6 +1,25 @@
-{ pkgs, ... }:
+{ pkgs, currentDir, ... }:
 
 {
+  sops = {
+    secrets = {
+      "host.crt" = {
+        path = "/etc/nebula/host.crt";
+        sopsFile = (currentDir + "/secrets/nebula.yaml");
+        mode = "0440";
+        group = "nebula-homelab";
+        restartUnits = [ "nebula@homelab.service" ];
+      };
+      "host.key" = {
+        path = "/etc/nebula/host.key";
+        sopsFile = (currentDir + "/secrets/nebula.yaml");
+        mode = "0440";
+        group = "nebula-homelab";
+        restartUnits = [ "nebula@homelab.service" ];
+      };
+    };
+  };
+
   services = {
     nebula.networks.homelab = {
       enable = true;

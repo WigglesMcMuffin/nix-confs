@@ -18,15 +18,8 @@
 
   sops = {
     age.sshKeyPaths = [ "/home/tmoss/.ssh/id_ed-v2" ];
-    defaultSopsFile = ./secrets/nebula.yaml;
-    secrets = {
-      "tmoss.personal.desktop.crt" = {
-        path = "/etc/nebula/host.crt";
-      };
-      "tmoss.personal.desktop.key" = {
-        path = "/etc/nebula/host.key";
-      };
-    };
+    defaultSopsFile = ./secrets/secrets.yaml;
+    secrets.tmoss_pass.neededForUsers = true;
   };
 
   services = {
@@ -55,6 +48,7 @@
     extraGroups = [ "networkmanager" "wheel" "docker"];
     ignoreShellProgramCheck = true;
     shell = pkgs.zsh;
+    hashedPasswordFile = config.sops.secrets.tmoss_pass.path;
   };
 
   fonts.packages = [

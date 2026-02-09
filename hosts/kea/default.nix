@@ -3,8 +3,12 @@
   pkgs-stable,
   inputs,
   ...
-}: {
+}: 
+let
+  currentDir = ./.; # Allow submodules to reference module context
+in {
   imports = [
+    { _module.args = { inherit currentDir; }; }
     ./hardware-configuration.nix
     ../../modules/common/global
     ../../modules/hardware/amd
