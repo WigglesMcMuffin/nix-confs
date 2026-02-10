@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   outputs,
@@ -21,9 +22,9 @@
 
   services = {
     # Enable CUPS to print documents.
-    printing.enable = false;
+    printing.enable = lib.mkDefault false;
 
-    earlyoom.enable = true;
+    earlyoom.enable = lib.mkDefault true;
   };
 
   environment.systemPackages = with pkgs; [

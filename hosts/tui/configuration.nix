@@ -8,7 +8,6 @@
 
   networking = {
     hostName = "tui";
-    networkmanager.enable = false;
     interfaces.enp2s0 = {
       ipv4.addresses = [{
         address = "10.0.0.232";
@@ -37,50 +36,6 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = false;
     pulseaudio.enable = false;
-
-    openiscsi = {
-      enable = true;
-      name = "k8s-longhorn";
-    };
-
-    # Configure keymap in X11
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-
-    # Enable CUPS to print documents.
-    printing.enable = false;
-
-    # Enable sound with pipewire.
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
-    };
-
-    k3s = {
-      enable = false;
-      role = "server";
-      token = "highly_secret";
-      clusterInit = true;
-      extraFlags = [ "--resolv-conf /etc/kubernetes/resolv.conf" "--disable=traefik" "--kubelet-arg=read-only-port=10255"];
-      extraKubeletConfig = {
-        readOnlyPort = 10255;
-      };
-    };
-
-    etcd = {
-      enable = false;
-      package = pkgs-stable.etcd;
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -123,15 +78,6 @@
     systemPackages = stable ++ unstable;
 
     variables.EDITOR = "nvim";
-
-    etc = {
-      "kubernetes/resolv.conf".source = ./k8s.resolv.conf;
-    };
-  };
-
-  systemd.services.iscsid.serviceConfig = {
-    PrivateMounts = "yes";
-    BindPaths = "/run/current-system/sw/bin:/bin";
   };
 
   # This value determines the NixOS release from which the default

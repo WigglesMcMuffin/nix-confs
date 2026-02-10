@@ -27,14 +27,9 @@
     libinput.enable = false;
     pulseaudio.enable = false;
 
-    # Configure keymap in X11
+    # Disable the X11 windowing system.
     xserver = {
-      # Disable the X11 windowing system.
       enable = false;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
     };
 
     #yubikey

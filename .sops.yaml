@@ -1,6 +1,7 @@
 keys:
   - &admin_kea age1hnaq3zu7tle3jfaqx5r9uw2qgzxl42cc5xek9mwn8dgpaz502s6q5n2geg
   - &kahu age18kkaxamk90rqdxymgaujfy38fetuazmh4uj7fd6p3lh95zm5qvtsyjnyqa
+  - &tui age1ys49s6vt6leew8y6jkkt2prts3f2ue9v6q6d8sky8zwpec22c9rqgrtypm
 creation_rules:
   - path_regex: hosts/kea/secrets/[^/]+$
     key_groups:
@@ -10,8 +11,15 @@ creation_rules:
     key_groups:
     - age:
       - *admin_kea
+      - *tui
   - path_regex: hosts/kahu/secrets/[^/]+$
     key_groups:
     - age:
       - *admin_kea
       - *kahu
+  - path_regex: modules/common/optional/.*
+    key_groups:
+    - age:
+      - *admin_kea
+      - *kahu
+      - *tui
