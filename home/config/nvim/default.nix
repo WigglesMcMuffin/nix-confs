@@ -26,6 +26,7 @@
       luarocks
 
       #Go lang
+      go
       gopls
 
       #Python
