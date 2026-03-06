@@ -17,7 +17,7 @@
   zramSwap.enable = true;
 
   sops = {
-    age.sshKeyPaths = [ "/home/tmoss/.ssh/id_ed-v2" ];
+    age.sshKeyPaths = [ "/home/tmoss/.ssh/id_ed25519" ];
     defaultSopsFile = ./secrets/secrets.yaml;
     secrets.tmoss_pass.neededForUsers = true;
   };
@@ -99,6 +99,7 @@
         discord
         steamtinkerlaunch
         clipse
+        element-desktop
       ];
     in {
       systemPackages = stable ++ unstable;

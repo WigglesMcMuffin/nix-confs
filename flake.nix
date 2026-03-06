@@ -46,6 +46,26 @@
           }
         ];
       };
+      kaka = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./hosts/kaka
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              extraSpecialArgs = {
+                inherit inputs;
+                wezterm-name = "kaka-home";
+              };
+              users.tmoss.imports = [ ./home/modules/fetch-mutable-files.nix ./home/tmoss ];
+            };
+          }
+        ];
+      };
       kahu = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {

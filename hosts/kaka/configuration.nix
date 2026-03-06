@@ -12,17 +12,17 @@
   };
 
   networking = {
-    hostName = "kahu";
+    hostName = "kaka";
     networkmanager.enable = false;
     interfaces.enp45s0u1u2u1 = {
       ipv4.addresses = [{
-        address = "10.0.0.123";
+        address = "10.0.0.120";
         prefixLength = 24;
       }];
     };
     defaultGateway = {
       address = "10.0.0.1";
-      interface = "enp45s0u1u2u1";
+      interface = "enp2s0f1";
     };
     firewall.enable = false;
   };
@@ -102,3 +102,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 }
+
