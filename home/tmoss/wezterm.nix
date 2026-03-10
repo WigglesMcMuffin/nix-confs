@@ -19,6 +19,7 @@
         config.color_scheme = "tokyonight_storm"
         config.default_prog = { "/usr/bin/env", "zsh", "-l" }
         config.default_workspace = "${wezterm-name}"
+        config.window_background_opacity = 0.95
 
         config.leader = { key="a", mods="CTRL" }
         config.keys = {

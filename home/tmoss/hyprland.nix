@@ -42,6 +42,11 @@
         preserve_split = true;
       };
 
+      scrolling = {
+        column_width = 0.7; 
+        explicit_column_widths = "0.25, 0.333, 0.5, 0.666, 0.75, 1.0";
+      };
+
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
 
@@ -51,8 +56,6 @@
         "$mod SHIFT, Q, exit"
         "$mod, R, exec, rofi -show run"
         "$mod CTRL, SPACE, togglefloating"
-        "$mod, P, pseudo"
-        "$mod CTRL, P, togglesplit"
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"
         "$mod, k, movefocus, u"
@@ -62,7 +65,6 @@
         "$mod, N, togglespecialworkspace, scratch"
         "$mod, M, togglespecialworkspace, music"
         "$mod, T, togglespecialworkspace, term"
-        "$mod SHIFT, N, movetoworkspace, special:magic"
         "$mod, G, togglegroup"
         "$mod SHIFT CTRL, H, movewindoworgroup, l"
         "$mod SHIFT CTRL, J, movewindoworgroup, d"
@@ -71,6 +73,13 @@
         "$mod CTRL, J, changegroupactive, b"
         "$mod CTRL, K, changegroupactive, f"
         "$mod, v, exec, wezterm -n --config 'color_scheme=\"Sparky (Gogh)\"' --config enable_tab_bar=false start --class clipse -e clipse"
+        "$mod, comma, layoutmsg, move -col"
+        "$mod, period, layoutmsg, move +col"
+        "$mod, tab, layoutmsg, togglefit"
+        "$mod, equal, layoutmsg, colresize +0.05"
+        "$mod, minus, layoutmsg, colresize -0.05"
+        "$mod SHIFT, equal, layoutmsg, colresize +conf"
+        "$mod SHIFT, minus, layoutmsg, colresize -conf"
       ]
       ++ (
         # workspaces
@@ -98,19 +107,23 @@
 
       windowrule = match:class .*, suppress_event maximize
       windowrule = match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0", no_focus 1
+
       windowrule = match:class (org.wezfurlong.wezterm), workspace special:term
       windowrule = match:class (obsidian), workspace special:scratch
-      windowrule = match:class (Signal), workspace special:socials
-      windowrule = match:class (Signal), group set socials
-      windowrule = match:class (discord), workspace special:socials
-      windowrule = match:class (discord), group set socials
       windowrule = match:class (org.qutebrowser.qutebrowser), match:title (.*)(\[music\])(.*), workspace special:music
-      windowrule = match:class (Rofi), pin 1
-      windowrule = match:class (Rofi), stay_focused 1
-      windowrule = match:class clipse, pin 1
-      windowrule = match:class clipse, float 1
-      windowrule = match:class clipse, size 922 852
-      windowrule = match:class clipse, stay_focused 1
+
+      windowrule = tag +social, match:class signal|discord|Element
+      windowrule = match:tag social, workspace special:socials, group set socials
+
+      windowrule = tag +dialog, match:class Rofi|clipse
+      windowrule = match:tag dialog, pin 1, stay_focused 1
+      windowrule = match:class clipse, float 1, size 922 852
+
+      windowrule = tag +game, match:class ^steam_app_\d+
+      windowrule = match:tag game, fullscreen 0, immediate 0, rounding 0, decorate 0, border_size 0
+
+      workspace = 1, layout:scrolling
+      workspace = 3, layout:scrolling, gapsout:0, gapsin:0
 
       bind = $mod, A, submap, leader
       submap = leader
@@ -123,6 +136,31 @@
       submap = leader
       bind = , escape, submap, reset
       submap = reset
+    '';
+  };
+
+  programs.waybar = {
+    settings = {
+      layer = "top";
+
+      modles-left = [
+        "hyprland/workspace"
+      ];
+
+      modules-center = [
+        "hyprland/window"
+        "clock"
+      ];
+
+      modules-right = [
+        "privacy"
+        "hyprland/submap"
+        "tray"
+      ];
+    };
+
+    style = ''
+
     '';
   };
 }
