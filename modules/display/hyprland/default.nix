@@ -16,5 +16,6 @@
     swaynotificationcenter
     grim
     slurp
+    satty
   ];
 }
