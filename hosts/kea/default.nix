@@ -11,6 +11,7 @@ in {
     { _module.args = { inherit currentDir; }; }
     ./hardware-configuration.nix
     ../../modules/common/global
+    ../../modules/common/global/bare.nix
     ../../modules/hardware/amd
     ../../modules/hardware/audio/pipewire.nix
     ../../modules/networking/nebula

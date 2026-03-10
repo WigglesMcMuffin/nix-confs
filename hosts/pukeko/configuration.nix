@@ -1,14 +1,13 @@
 { config, inputs, pkgs, pkgs-stable, ... }:
 
 {
-  services = {
-    openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-    }
-  }
-
   zramSwap.enable = true;
+
+  sops = {
+    age.sshKeyPaths = [ "/home/tmoss/.ssh/id_ed25519" ];
+    defaultSopsFile = ./secrets/secrets.yaml;
+    secrets.tmoss_pass.neededForUsers = true;
+  };
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
@@ -23,6 +22,28 @@
       ];
       #hashedPasswordFile = config.sops.secrets.tmoss_pass.path;
     };
+  };
+
+  environment = let
+    stable = with pkgs-stable; [
+    ];
+
+    unstable = with pkgs; [
+      git
+      gawk
+      gcc
+      nerd-fonts.lilex
+      nerd-fonts.meslo-lg
+      nerd-fonts.noto
+      nerd-fonts.shure-tech-mono
+      age
+      sops
+      libcgroup
+    ];
+  in {
+    systemPackages = stable ++ unstable;
+
+    variables.EDITOR = "nvim";
   };
 
   system.stateVersion = "24.11";

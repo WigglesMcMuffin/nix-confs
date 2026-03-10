@@ -11,6 +11,7 @@ in {
     { _module.args = { inherit currentDir; }; }
     ./hardware-configuration.nix
     ../../modules/common/global
+    ../../modules/common/global/bare.nix
     ../../modules/common/global/network.nix
     ./configuration.nix
     ../../modules/common/optional/kubernetes-operator.nix

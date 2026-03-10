@@ -11,7 +11,8 @@ in {
     { _module.args = { inherit currentDir; }; }
     ../../modules/common/global
     ./configuration.nix
-    #../../modules/networking/nebula
+    ../../modules/networking/nebula
+    ../../modules/networking/traefik
   ];
 }
 

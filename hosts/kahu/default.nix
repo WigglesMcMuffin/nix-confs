@@ -13,6 +13,7 @@ in {
     ./disk-layout.nix
     ./configuration.nix
     ../../modules/common/global
+    ../../modules/common/global/bare.nix
     ../../modules/common/global/network.nix
     ../../modules/common/optional/kubernetes-operator.nix
     ../../modules/common/optional/laptop.nix

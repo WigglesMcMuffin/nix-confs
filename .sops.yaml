@@ -3,6 +3,7 @@ keys:
   - &kahu age18kkaxamk90rqdxymgaujfy38fetuazmh4uj7fd6p3lh95zm5qvtsyjnyqa
   - &tui age1ys49s6vt6leew8y6jkkt2prts3f2ue9v6q6d8sky8zwpec22c9rqgrtypm
   - &kaka age18e3x5els0mv96t5tx0sqft7ya33jjad2kqmagp6vd7l4alcqpcqszrennn
+  - &pukeko age16dcqqq3s7eaaqvw9225lagwhp94w5yuwls4sqefwzznr8z4mvdjsvz7kwj
 creation_rules:
   - path_regex: hosts/kea/secrets/[^/]+$
     key_groups:
@@ -18,6 +19,11 @@ creation_rules:
     - age:
       - *admin_kea
       - *kaka
+  - path_regex: hosts/pukeko/secrets/[^/]+$
+    key_groups:
+    - age:
+      - *admin_kea
+      - *pukeko
   - path_regex: hosts/kahu/secrets/[^/]+$
     key_groups:
     - age:
@@ -30,3 +36,4 @@ creation_rules:
       - *kahu
       - *tui
       - *kaka
+      - *pukeko

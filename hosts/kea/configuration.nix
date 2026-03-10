@@ -83,7 +83,7 @@
         git
         gh
         gawk
-        signal-desktop-bin
+        signal-desktop
         zathura
         bitwarden-desktop
         obsidian
