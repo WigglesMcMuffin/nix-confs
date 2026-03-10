@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, pkgs-stable, ... }:
 
 {
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -32,7 +32,7 @@
           };
         });
       };
-    ))
+    })
   ];
   home = let
     stable = with pkgs-stable; [
@@ -44,6 +44,7 @@
       rofi
       clipse
       obsidian
+      thunar
     ];
 
   in {
