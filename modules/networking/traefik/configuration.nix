@@ -1,0 +1,6 @@
+{ ... }:
+{
+  services.traefik = {
+    enable = true;
+  };
+}
