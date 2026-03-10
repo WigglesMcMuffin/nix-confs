@@ -38,7 +38,7 @@
 
     plugins = [pkgs.vimPlugins.lazy-nvim];
 
-    extraLuaConfig = ''require("tmoss")'';
+    initLua = ''require("tmoss")'';
   };
   home = let
     dotfiles = config.lib.file.mkOutOfStoreSymlink config.home.mutableFile."dotfiles".path;
