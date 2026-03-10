@@ -27,6 +27,24 @@
       };
     }; 
     nixosConfigurations = {
+      aws = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+
+        ];
+      };
+      digital-ocean = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./cloud/digitalocean
+        ];
+      };
       tui = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
@@ -100,7 +118,27 @@
                 inherit inputs;
                 wezterm-name = "kea-home";
               };
-              users.tmoss.imports = [ ./home/modules/fetch-mutable-files.nix ./home/tmoss ./home/tmoss/hyprland.nix ./home/tmoss/home.nix ];
+              users.tmoss.imports = [ ./home/modules/fetch-mutable-files.nix ./home/tmoss ./home/tmoss/hyprland.nix ./home/tmoss/home.nix ./home/tmoss/graphical.nix ];
+            };
+          }
+        ];
+      };
+      pukeko = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+        modules = [
+          ./cloud/digitalocean
+          ./hosts/pukeko
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              extraSpecialArgs = {
+                inherit inputs;
+                wezterm-name = "pukeko-home";
+              };
+              users.tmoss.imports = [ ./home/modules/fetch-mutable-files.nix ./home/tmoss ];
             };
           }
         ];
