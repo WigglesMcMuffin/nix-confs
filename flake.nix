@@ -24,8 +24,8 @@
       fetch-mutable-files = import ./home/modules/fetch-mutable-files.nix;
       users = {
         tmoss = import ./home/tmoss;
-        tmoss.graphical = import ./home/tmoss/graphical.nix;
       };
+      tmoss-graphical = import ./home/tmoss/graphical.nix;
     }; 
     nixosConfigurations = {
       aws = nixpkgs.lib.nixosSystem rec {
