@@ -12,6 +12,8 @@
     vimAlias = true;
     vimdiffAlias = true;
     viAlias = true;
+    withRuby = false;
+    withPython3 = true;
 
     extraPackages = with pkgs; [
       tree-sitter
