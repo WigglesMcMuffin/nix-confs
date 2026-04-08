@@ -15,12 +15,12 @@
   services = {
     kubernetes = {
       roles = ["master"];
-      masterAddress = "10.192.0.4";
-      apiserverAddress = "https://10.192.0.4:6443";
+      masterAddress = "10.246.8.1";
+      apiserverAddress = "https://10.246.8.1:6443";
       easyCerts = true;
       apiserver = {
         securePort = 6443;
-        advertiseAddress = "10.192.0.4";
+        advertiseAddress = "10.246.8.1";
       };
 
       addons.dns.enable = true;

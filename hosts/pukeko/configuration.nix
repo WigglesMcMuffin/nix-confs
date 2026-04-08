@@ -46,5 +46,6 @@
     variables.EDITOR = "nvim";
   };
 
+  services.nebula.networks.homelab.lighthouse.dns.host = "10.246.0.2";
   system.stateVersion = "24.11";
 }

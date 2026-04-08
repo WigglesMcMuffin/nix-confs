@@ -1,4 +1,4 @@
-{ pkgs, currentDir, ... }:
+{ pkgs, lib, currentDir, ... }:
 
 {
   sops = {
@@ -26,21 +26,22 @@
       ca = "/etc/nebula/ca.crt";
       cert = "/etc/nebula/host.crt";
       key = "/etc/nebula/host.key";
-      isLighthouse = false;
-      lighthouses = [ "10.192.0.1" ];
-      relays = [ "10.192.0.1" ];
+      isLighthouse = lib.mkDefault false;
+      lighthouses = [ "10.246.0.1" "10.246.0.2" ];
+      relays = [ "10.246.0.1" "10.246.0.2" ];
       staticHostMap = {
-        "10.192.0.1" = [ "34.201.63.209:4242" ];
+        "10.246.0.1" = [ "98.95.163.133:4242" ];
+        "10.246.0.2" = [ "159.203.145.200:4242" ];
       };
       settings = {
         lighthouse.remote_allow_list = {
           "0.0.0.0/0" = true;
-          "10.192.0.0/10" = true;
+          "10.246.0.0/15" = true;
         };
         firewall.outbound_action = "reject";
         firewall.inbound_action = "reject";
 
-        logging.level = "debug";
+        logging.level = "info";
         logging.format = "text";
 
         punchy.punch = true;

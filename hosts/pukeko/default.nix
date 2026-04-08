@@ -12,7 +12,9 @@ in {
     ../../modules/common/global
     ./configuration.nix
     ../../modules/networking/nebula
-    ../../modules/networking/traefik
+    ../../modules/networking/nebula/lighthouse.nix
+    #../../modules/networking/traefik
+    ../../modules/networking/haproxy
   ];
 }
 

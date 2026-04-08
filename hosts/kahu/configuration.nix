@@ -14,7 +14,7 @@
   networking = {
     hostName = "kahu";
     networkmanager.enable = false;
-    interfaces.enp45s0u1u2u1 = {
+    interfaces.enp45s0u1u2 = {
       ipv4.addresses = [{
         address = "10.0.0.123";
         prefixLength = 24;
@@ -22,7 +22,7 @@
     };
     defaultGateway = {
       address = "10.0.0.1";
-      interface = "enp45s0u1u2u1";
+      interface = "enp45s0u1u2";
     };
     firewall.enable = false;
   };
@@ -42,7 +42,7 @@
     pulseaudio.enable = false;
 
     k3s = {
-      serverAddr = "https://10.192.0.4:6443";
+      serverAddr = "https://10.246.8.1:6443";
     };
 
   };

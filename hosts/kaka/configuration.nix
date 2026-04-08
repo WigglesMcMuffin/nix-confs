@@ -42,7 +42,7 @@
     pulseaudio.enable = false;
 
     k3s = {
-      serverAddr = "https://10.192.0.4:6443";
+      serverAddr = "https://10.246.8.1:6443";
     };
 
   };

@@ -8,7 +8,7 @@
       http = {
         routers = {
           dashboard = {
-            rule = "Host(`traefik.10.192.0.10.nip.io`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
+            rule = "Host(`traefik.10.246.0.2.nip.io`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))";
             service = "api@internal";
           };
           pub-dashboard = {
@@ -16,7 +16,7 @@
             service = "api@internal";
           };
           neb-dashboard = {
-            rule = "Host(`10.192.0.10`)";
+            rule = "Host(`10.246.0.2`)";
             service = "api@internal";
           };
         };
@@ -46,7 +46,7 @@
       };
       providers = {
         kubernetesingress = {
-          endpoint = "https://10.192.0.4:6443";
+          endpoint = "https://10.246.8.1:6443";
           certauthfilepath = "";
         };
       };
