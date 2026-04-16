@@ -16,7 +16,6 @@
     withPython3 = true;
 
     extraPackages = with pkgs; [
-      tree-sitter
       lua51Packages.tree-sitter-cli
       gcc
 
