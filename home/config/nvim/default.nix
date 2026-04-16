@@ -17,10 +17,14 @@
 
     extraPackages = with pkgs; [
       tree-sitter
+      lua51Packages.tree-sitter-cli
       gcc
 
       # For telescope
       fzf
+      # Build reqs for fzf
+      cmake
+      gnumake
 
       # Lua LSP
       lua5_1
@@ -38,7 +42,9 @@
       pyright
     ];
 
-    plugins = [pkgs.vimPlugins.lazy-nvim];
+    plugins = [
+      pkgs.vimPlugins.lazy-nvim
+    ];
 
     initLua = ''require("tmoss")'';
   };
