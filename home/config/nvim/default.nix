@@ -33,6 +33,7 @@
       #Go lang
       go
       gopls
+      delve
 
       #Python
       ruff
