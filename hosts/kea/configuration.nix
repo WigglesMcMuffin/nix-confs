@@ -68,35 +68,39 @@
       "steam-unwrapped"
       "steam-run"
       "discord"
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10"
+  ];
+
+  environment = let
+    stable = with pkgs-stable; [
+
     ];
 
-    environment = let
-      stable = with pkgs-stable; [
-
-      ];
-
-      unstable = with pkgs; [
-        git
-        gh
-        gawk
-        signal-desktop
-        zathura
-        bitwarden-desktop
-        obsidian
-        gcc
-        sops
-        age
-        gimp
-        libcgroup
-        discord
-        steamtinkerlaunch
-        clipse
-        element-desktop
-      ];
-    in {
-      systemPackages = stable ++ unstable;
-      variables.EDITOR = "nvim";
-    };
+    unstable = with pkgs; [
+      git
+      gh
+      gawk
+      signal-desktop
+      zathura
+      bitwarden-desktop
+      obsidian
+      gcc
+      sops
+      age
+      gimp
+      libcgroup
+      discord
+      steamtinkerlaunch
+      clipse
+      element-desktop
+    ];
+  in {
+    systemPackages = stable ++ unstable;
+    variables.EDITOR = "nvim";
+  };
 
 
 

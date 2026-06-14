@@ -10,3 +10,7 @@ tasks:
       HOST: '{{ index .MATCH 0}}'
     cmds:
       - NIX_SSHOPTS="-i ~/.ssh/id_rsa" nixos-rebuild switch --flake ".#{{.HOST}}" --target-host="root@{{.HOST}}"
+
+  nix:flake:update:
+    cmds:
+      - nix flake update --option access-tokens "github.com=$(gh auth token)"
