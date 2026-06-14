@@ -18,6 +18,10 @@
     earlyoom.enable = lib.mkDefault true;
   };
 
+  fonts.packages = [
+    pkgs.nerd-fonts.fantasque-sans-mono
+  ];
+
   environment.systemPackages = with pkgs; [
     wget
     htop
@@ -27,5 +31,6 @@
     iptables
     usbutils
     pciutils
+    nerd-fonts.fantasque-sans-mono
   ];
 }

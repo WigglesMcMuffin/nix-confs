@@ -62,10 +62,6 @@
     };
   };
 
-  fonts.packages = [
-    pkgs.nerd-fonts.lilex
-  ];
-
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
     ];
@@ -79,10 +75,6 @@
       git
       gawk
       gcc
-      nerd-fonts.lilex
-      nerd-fonts.meslo-lg
-      nerd-fonts.noto
-      nerd-fonts.shure-tech-mono
       age
       sops
       libcgroup
@@ -102,4 +94,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 }
-

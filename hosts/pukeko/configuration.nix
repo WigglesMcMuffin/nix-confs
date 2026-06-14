@@ -8,7 +8,7 @@
     defaultSopsFile = ./secrets/secrets.yaml;
     secrets.tmoss_pass.neededForUsers = true;
   };
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     tmoss = {
@@ -32,10 +32,6 @@
       git
       gawk
       gcc
-      nerd-fonts.lilex
-      nerd-fonts.meslo-lg
-      nerd-fonts.noto
-      nerd-fonts.shure-tech-mono
       age
       sops
       libcgroup

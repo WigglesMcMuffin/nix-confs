@@ -46,10 +46,6 @@
     hashedPasswordFile = config.sops.secrets.tmoss_pass.path;
   };
 
-  fonts.packages = [
-    pkgs.nerd-fonts.lilex
-  ];
-
   programs = {
     # Install firefox.
     firefox.enable = true;
@@ -91,10 +87,6 @@
         sops
         age
         gimp
-        nerd-fonts.lilex
-        nerd-fonts.meslo-lg
-        nerd-fonts.noto
-        nerd-fonts.shure-tech-mono
         libcgroup
         discord
         steamtinkerlaunch

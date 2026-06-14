@@ -3,7 +3,7 @@
   pkgs-stable,
   inputs,
   ...
-}: 
+}:
 let
   currentDir = ./.; # Allow submodules to reference module context
 in {
@@ -13,8 +13,6 @@ in {
     ./configuration.nix
     ../../modules/networking/nebula
     ../../modules/networking/nebula/lighthouse.nix
-    #../../modules/networking/traefik
-    ../../modules/networking/haproxy
+    ../../modules/networking/traefik
   ];
 }
-

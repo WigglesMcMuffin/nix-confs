@@ -7,15 +7,21 @@
   ];
 
   programs = {
-    hyprland.enable = true;
-    hyprland.xwayland.enable = false;
+    uwsm.enable              = true;
+    hyprland.enable          = true;
+    hyprland.withUWSM        = true;
+    hyprland.xwayland.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    waybar
-    swaynotificationcenter
-    grim
-    slurp
-    satty
-  ];
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
+    systemPackages = with pkgs; [
+      waybar
+      swaynotificationcenter
+      grim
+      slurp
+      satty
+    ];
+  };
 }
