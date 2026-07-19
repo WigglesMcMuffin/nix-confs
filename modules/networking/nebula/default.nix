@@ -28,7 +28,7 @@
       key = "/etc/nebula/host.key";
       isLighthouse = lib.mkDefault false;
       lighthouses = [ "10.246.0.1" "10.246.0.2" ];
-      relays = [ "10.246.0.1" "10.246.0.2" ];
+      relays = lib.mkDefault [ "10.246.0.1" "10.246.0.2" ];
       staticHostMap = {
         "10.246.0.1" = [ "98.95.163.133:4242" ];
         "10.246.0.2" = [ "159.203.145.200:4242" ];
@@ -44,7 +44,10 @@
         logging.level = "info";
         logging.format = "text";
 
+        relay.use_relays = false;
+
         punchy.punch = true;
+        punchy.respond = true;
       };
       firewall = {
         inbound = [

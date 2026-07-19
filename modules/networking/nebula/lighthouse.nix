@@ -5,6 +5,7 @@
   services = {
     nebula.networks.homelab = {
       isLighthouse = true;
+      relays = [ ];
       isRelay = true;
       listen = {
         host = "0.0.0.0";
@@ -17,4 +18,3 @@
     };
   };
 }
-

@@ -96,6 +96,7 @@
       steamtinkerlaunch
       clipse
       element-desktop
+      npins
     ];
   in {
     systemPackages = stable ++ unstable;
