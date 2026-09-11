@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, globals, config, ... }:
+{ pkgs, pkgs-stable, globals, lib, config, ... }:
 
 {
   programs.waybar = {
