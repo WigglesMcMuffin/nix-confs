@@ -32,6 +32,12 @@
       enable = false;
     };
 
+    udev = {
+      extraRules = ''
+        KERNEL=="hidraw*", ATTRS{idVendor}=="19f5", MODE="0666"
+      '';
+    };
+
     #yubikey
     pcscd.enable = true;
   };
@@ -67,11 +73,6 @@
       "steam-original"
       "steam-unwrapped"
       "steam-run"
-      "discord"
-  ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-39.8.10"
   ];
 
   environment = let
@@ -92,7 +93,7 @@
       age
       gimp
       libcgroup
-      discord
+      webcord
       steamtinkerlaunch
       clipse
       element-desktop

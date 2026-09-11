@@ -47,7 +47,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
-    package = null;
+    package = lib.mkDefault null;
     portalPackage = null;
     extraConfig = ''
     require("lua.init");
