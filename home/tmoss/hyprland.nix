@@ -4,22 +4,24 @@
   programs.waybar = {
     enable = true;
     settings = {
-      layer = "top";
+      mainBar = {
+        layer = "top";
 
-      modles-left = [
-        "hyprland/workspace"
-      ];
+        modles-left = [
+          "hyprland/workspace"
+        ];
 
-      modules-center = [
-        "hyprland/window"
-        "clock"
-      ];
+        modules-center = [
+          "hyprland/window"
+          "clock"
+        ];
 
-      modules-right = [
-        "privacy"
-        "hyprland/submap"
-        "tray"
-      ];
+        modules-right = [
+          "privacy"
+          "hyprland/submap"
+          "tray"
+        ];
+      };
     };
 
     style = ''
