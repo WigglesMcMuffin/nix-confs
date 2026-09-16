@@ -2,6 +2,7 @@
 
 {
   programs.waybar = {
+    enable = true;
     settings = {
       layer = "top";
 
@@ -48,7 +49,7 @@
     enable = true;
     configType = "lua";
     package = lib.mkDefault null;
-    portalPackage = null;
+    portalPackage = lib.mkDefault null;
     extraConfig = ''
     require("lua.init");
     '';
