@@ -7,16 +7,16 @@
       mainBar = {
         layer = "top";
 
-        modles-left = [
+        modles-left = lib.mkDefault [
           "hyprland/workspace"
         ];
 
-        modules-center = [
+        modules-center = lib.mkDefault [
           "hyprland/window"
           "clock"
         ];
 
-        modules-right = [
+        modules-right = lib.mkDefault [
           "privacy"
           "hyprland/submap"
           "tray"
