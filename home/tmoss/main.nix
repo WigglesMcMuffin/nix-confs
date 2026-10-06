@@ -2,25 +2,6 @@
   username = "tmoss";
 in {
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      wezterm = prev.wezterm.overrideAttrs (old: rec {
-        version = "0-unstable-2026-01-29-overlaypatch";
-        src = pkgs.fetchFromGitHub {
-          owner = "JafarAbdi";
-          repo = "wezterm";
-          rev = "c1c57af8556fd78a51f9556bdbbb56c3c38e0b57";
-          fetchSubmodules = true;
-          hash = "sha256-cH7kdJ1h+5qTsd4GG7JFg+o8gNm42VVEAdbR3zE1ieE=";
-        };
-        cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
-          inherit src;
-          hash = "sha256-o6VEpAzNUPtONbtI63DXyGWiLDVU9q8IZethlzz5duk=";
-        };
-      });
-    })
-  ];
-
   home = let
     stable = with pkgs-stable; [
 
